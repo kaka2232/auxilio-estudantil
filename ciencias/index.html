@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EstudaFácil - Auxílio Estudantil</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        nav ul li {
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffeb3b;
+        }
+        
+        /* Banner principal */
+        .hero {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234e54c8" opacity="0.1"/><path d="M0 0L100 100" stroke="%234e54c8" stroke-width="2" opacity="0.2"/></svg>');
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #4e54c8;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4e54c8;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(78, 84, 200, 0.4);
+        }
+        
+        .btn:hover {
+            background: #3a3fb8;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(78, 84, 200, 0.6);
+        }
+        
+        /* Matérias */
+        .subjects {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #4e54c8;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #4e54c8;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .subject-header {
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .math .subject-header { background: linear-gradient(135deg, #ff6b6b, #ff8e8e); }
+        .portuguese .subject-header { background: linear-gradient(135deg, #4e54c8, #8f94fb); }
+        .history .subject-header { background: linear-gradient(135deg, #36d1dc, #5b86e5); }
+        .geography .subject-header { background: linear-gradient(135deg, #a8ff78, #78ffd6); }
+        .science .subject-header { background: linear-gradient(135deg, #ff9966, #ff5e62); }
+        
+        .subject-content {
+            padding: 20px;
+        }
+        
+        .subject-content h3 {
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .subject-content ul {
+            list-style: none;
+            margin-left: 10px;
+        }
+        
+        .subject-content li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .subject-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4e54c8;
+            font-weight: bold;
+        }
+        
+        /* Anos escolares */
+        .years {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 60px 0;
+        }
+        
+        .years-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .year-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .year-card h3 {
+            color: #4e54c8;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        /* Rodapé */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #8f94fb;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .years-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                EstudaFácil
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Matérias</a></li>
+                    <li><a href="#">Exercícios</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero">
+        <div class="container">
+            <h1>Seu Auxílio Estudantil Completo</h1>
+            <p>Encontre conteúdos, resumos e exercícios para as matérias do primeiro e segundo ano do ensino fundamental</p>
+            <a href="#subjects" class="btn">Explorar Matérias</a>
+        </div>
+    </section>
+
+    <!-- Matérias -->
+    <section class="subjects" id="subjects">
+        <div class="container">
+            <h2 class="section-title">Matérias Disponíveis</h2>
+            <div class="subjects-grid">
+                <!-- Matemática -->
+                <div class="subject-card math">
+                    <div class="subject-header">
+                        <i class="fas fa-calculator"></i> Matemática
+                    </div>
+                    <div class="subject-content">
+                        <h3>Conteúdos Abordados:</h3>
+                        <ul>
+                            <li>Operações básicas</li>
+                            <li>Tabuada</li>
+                            <li>Geometria básica</li>
+                            <li>Frações simples</li>
+                            <li>Resolução de problemas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Português -->
+                <div class="subject-card portuguese">
+                    <div class="subject-header">
+                        <i class="fas fa-book"></i> Português
+                    </div>
+                    <div class="subject-content">
+                        <h3>Conteúdos Abordados:</h3>
+                        <ul>
+                            <li>Gramática básica</li>
+                            <li>Interpretação de texto</li>
+                            <li>Produção textual</li>
+                            <li>Ortografia</li>
+                            <li>Classes de palavras</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- História -->
+                <div class="subject-card history">
+                    <div class="subject-header">
+                        <i class="fas fa-landmark"></i> História
+                    </div>
+                    <div class="subject-content">
+                        <h3>Conteúdos Abordados:</h3>
+                        <ul>
+                            <li>História do Brasil</li>
+                            <li>História mundial</li>
+                            <li>Civilizações antigas</li>
+                            <li>Descobrimentos</li>
+                            <li>Linha do tempo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Geografia -->
+                <div class="subject-card geography">
+                    <div class="subject-header">
+                        <i class="fas fa-globe-americas"></i> Geografia
+                    </div>
+                    <div class="subject-content">
+                        <h3>Conteúdos Abordados:</h3>
+                        <ul>
+                            <li>Mapas e coordenadas</li>
+                            <li>Relevo e clima</li>
+                            <li>Continentes e oceanos</li>
+                            <li>População e migração</li>
+                            <li>Meio ambiente</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ciências -->
+                <div class="subject-card science">
+                    <div class="subject-header">
+                        <i class="fas fa-flask"></i> Ciências
+                    </div>
+                    <div class="subject-content">
+                        <h3>Conteúdos Abordados:</h3>
+                        <ul>
+                            <li>Corpo humano</li>
+                            <li>Seres vivos</li>
+                            <li>Energia e matéria</li>
+                            <li>Planeta Terra</li>
+                            <li>Experimentos simples</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anos Escolares -->
+    <section class="years">
+        <div class="container">
+            <h2 class="section-title">Conteúdos por Ano</h2>
+            <div class="years-container">
+                <div class="year-card">
+                    <h3>Primeiro Ano</h3>
+                    <p>Conteúdos adequados para alunos do primeiro ano, com explicações simples e exercícios básicos para construção do conhecimento fundamental em cada matéria.</p>
+                    <ul>
+                        <li>Matemática: Números, contagem, formas geométricas simples</li>
+                        <li>Português: Alfabeto, sílabas, palavras simples</li>
+                        <li>História: Família, comunidade, fatos históricos simples</li>
+                        <li>Geografia: Casa, escola, bairro, natureza</li>
+                        <li>Ciências: Partes do corpo, plantas, animais</li>
+                    </ul>
+                </div>
+                <div class="year-card">
+                    <h3>Segundo Ano</h3>
+                    <p>Conteúdos para alunos do segundo ano, com maior complexidade e aprofundamento nos temas, preparando para os anos seguintes.</p>
+                    <ul>
+                        <li>Matemática: Adição, subtração, medidas, gráficos simples</li>
+                        <li>Português: Frases, pequenos textos, gramática básica</li>
+                        <li>História: Fatos históricos locais, feriados nacionais</li>
+                        <li>Geografia: Cidade, estado, país, mapas simples</li>
+                        <li>Ciências: Meio ambiente, seres vivos, fenômenos naturais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Nós</h3>
+                    <p>O EstudaFácil é uma plataforma de auxílio estudantil dedicada a ajudar alunos do ensino fundamental em sua jornada de aprendizado.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-envelope"></i> contato@estudafacil.com</p>
+                    <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 EstudaFácil - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
