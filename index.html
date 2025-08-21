@@ -218,6 +218,123 @@
             font-size: 1.5rem;
         }
         
+        /* Nova seção de exercícios */
+        .exercises {
+            padding: 60px 0;
+            display: none; /* Inicialmente oculta */
+        }
+        
+        .exercise-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .exercise-title {
+            color: #4e54c8;
+            font-size: 1.5rem;
+        }
+        
+        .exercise-year {
+            background: #4e54c8;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .exercise-content {
+            margin-bottom: 20px;
+        }
+        
+        .exercise-question {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #4e54c8;
+        }
+        
+        .exercise-options {
+            list-style: none;
+            margin-left: 20px;
+        }
+        
+        .exercise-options li {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .exercise-options li:hover {
+            background: #f0f0f0;
+        }
+        
+        .exercise-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .btn-check {
+            background: #4e54c8;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-check:hover {
+            background: #3a3fb8;
+        }
+        
+        .btn-reset {
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .incorrect {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        
         /* Rodapé */
         footer {
             background: #333;
@@ -263,6 +380,24 @@
             .years-container {
                 flex-direction: column;
             }
+            
+            .exercise-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .exercise-year {
+                margin-top: 10px;
+            }
+            
+            .exercise-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn-check, .btn-reset {
+                width: 100%;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -278,9 +413,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Matérias</a></li>
-                    <li><a href="#">Exercícios</a></li>
+                    <li><a href="#" onclick="showSection('home')">Início</a></li>
+                    <li><a href="#" onclick="showSection('subjects')">Matérias</a></li>
+                    <li><a href="#" onclick="showSection('exercises')">Exercícios</a></li>
                     <li><a href="#">Sobre</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
@@ -289,16 +424,16 @@
     </header>
 
     <!-- Banner Principal -->
-    <section class="hero">
+    <section class="hero" id="home-section">
         <div class="container">
             <h1>Seu Auxílio Estudantil Completo</h1>
             <p>Encontre conteúdos, resumos e exercícios para as matérias do primeiro e segundo ano do ensino fundamental</p>
-            <a href="#subjects" class="btn">Explorar Matérias</a>
+            <a href="#subjects" class="btn" onclick="showSection('subjects')">Explorar Matérias</a>
         </div>
     </section>
 
     <!-- Matérias -->
-    <section class="subjects" id="subjects">
+    <section class="subjects" id="subjects-section">
         <div class="container">
             <h2 class="section-title">Matérias Disponíveis</h2>
             <div class="subjects-grid">
@@ -391,7 +526,7 @@
     </section>
 
     <!-- Anos Escolares -->
-    <section class="years">
+    <section class="years" id="years-section">
         <div class="container">
             <h2 class="section-title">Conteúdos por Ano</h2>
             <div class="years-container">
@@ -412,11 +547,182 @@
                     <ul>
                         <li>Matemática: Adição, subtração, medidas, gráficos simples</li>
                         <li>Português: Frases, pequenos textos, gramática básica</li>
-                        <li>História: Fatos históricos locais, feriados nacionais</li>
+                        <li>História: Fatis históricos locais, feriados nacionais</li>
                         <li>Geografia: Cidade, estado, país, mapas simples</li>
                         <li>Ciências: Meio ambiente, seres vivos, fenômenos naturais</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nova seção de exercícios -->
+    <section class="exercises" id="exercises-section">
+        <div class="container">
+            <h2 class="section-title">Exercícios</h2>
+            
+            <!-- Matemática - Primeiro Ano -->
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h3 class="exercise-title">Matemática - Primeiro Ano</h3>
+                    <span class="exercise-year">1º Ano</span>
+                </div>
+                <div class="exercise-content">
+                    <div class="exercise-question">
+                        <p>1. Quantas maçãs estão na imagem abaixo? (imagine uma imagem com 5 maçãs)</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="math1-q1" value="a"> a) 3 maçãs</li>
+                            <li><input type="radio" name="math1-q1" value="b"> b) 5 maçãs</li>
+                            <li><input type="radio" name="math1-q1" value="c"> c) 7 maçãs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>2. Complete a sequência: 2, 4, ____, 8, 10</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="math1-q2" value="a"> a) 5</li>
+                            <li><input type="radio" name="math1-q2" value="b"> b) 6</li>
+                            <li><input type="radio" name="math1-q2" value="c"> c) 7</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>3. Qual forma geométrica é redonda?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="math1-q3" value="a"> a) Quadrado</li>
+                            <li><input type="radio" name="math1-q3" value="b"> b) Triângulo</li>
+                            <li><input type="radio" name="math1-q3" value="c"> c) Círculo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exercise-actions">
+                    <button class="btn-check" onclick="checkExercise('math1', ['b', 'b', 'c'])">Verificar Respostas</button>
+                    <button class="btn-reset" onclick="resetExercise('math1')">Limpar</button>
+                </div>
+                <div id="math1-result" class="result-feedback"></div>
+            </div>
+            
+            <!-- Português - Primeiro Ano -->
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h3 class="exercise-title">Português - Primeiro Ano</h3>
+                    <span class="exercise-year">1º Ano</span>
+                </div>
+                <div class="exercise-content">
+                    <div class="exercise-question">
+                        <p>1. Qual palavra começa com a letra "C"?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="port1-q1" value="a"> a) Bola</li>
+                            <li><input type="radio" name="port1-q1" value="b"> b) Casa</li>
+                            <li><input type="radio" name="port1-q1" value="c"> c) Dado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>2. Complete a palavra: C_SA</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="port1-q2" value="a"> a) A</li>
+                            <li><input type="radio" name="port1-q2" value="b"> b) O</li>
+                            <li><input type="radio" name="port1-q2" value="c"> c) U</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>3. Qual é o plural de "casa"?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="port1-q3" value="a"> a) Casa</li>
+                            <li><input type="radio" name="port1-q3" value="b"> b) Casas</li>
+                            <li><input type="radio" name="port1-q3" value="c"> c) Casinhas</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exercise-actions">
+                    <button class="btn-check" onclick="checkExercise('port1', ['b', 'c', 'b'])">Verificar Respostas</button>
+                    <button class="btn-reset" onclick="resetExercise('port1')">Limpar</button>
+                </div>
+                <div id="port1-result" class="result-feedback"></div>
+            </div>
+            
+            <!-- Matemática - Segundo Ano -->
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h3 class="exercise-title">Matemática - Segundo Ano</h3>
+                    <span class="exercise-year">2º Ano</span>
+                </div>
+                <div class="exercise-content">
+                    <div class="exercise-question">
+                        <p>1. Quanto é 5 + 7?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="math2-q1" value="a"> a) 11</li>
+                            <li><input type="radio" name="math2-q1" value="b"> b) 12</li>
+                            <li><input type="radio" name="math2-q1" value="c"> c) 13</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>2. Se tenho 8 balas e dou 3 para meu amigo, com quantas fico?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="math2-q2" value="a"> a) 3</li>
+                            <li><input type="radio" name="math2-q2" value="b"> b) 5</li>
+                            <li><input type="radio" name="math2-q2" value="c"> c) 11</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>3. Qual é o dobro de 6?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="math2-q3" value="a"> a) 3</li>
+                            <li><input type="radio" name="math2-q3" value="b"> b) 12</li>
+                            <li><input type="radio" name="math2-q3" value="c"> c) 18</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exercise-actions">
+                    <button class="btn-check" onclick="checkExercise('math2', ['b', 'b', 'b'])">Verificar Respostas</button>
+                    <button class="btn-reset" onclick="resetExercise('math2')">Limpar</button>
+                </div>
+                <div id="math2-result" class="result-feedback"></div>
+            </div>
+            
+            <!-- Português - Segundo Ano -->
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h3 class="exercise-title">Português - Segundo Ano</h3>
+                    <span class="exercise-year">2º Ano</span>
+                </div>
+                <div class="exercise-content">
+                    <div class="exercise-question">
+                        <p>1. Qual palavra está escrita corretamente?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="port2-q1" value="a"> a) Zucesso</li>
+                            <li><input type="radio" name="port2-q1" value="b"> b) Sucesso</li>
+                            <li><input type="radio" name="port2-q1" value="c"> c) Xucesso</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>2. Complete a frase: Eu ____ para escola todos os dias.</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="port2-q2" value="a"> a) vou</li>
+                            <li><input type="radio" name="port2-q2" value="b"> b) vamos</li>
+                            <li><input type="radio" name="port2-q2" value="c"> c) vais</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-question">
+                        <p>3. Qual é o antônimo de "alto"?</p>
+                        <ul class="exercise-options">
+                            <li><input type="radio" name="port2-q3" value="a"> a) Grande</li>
+                            <li><input type="radio" name="port2-q3" value="b"> b) Baixo</li>
+                            <li><input type="radio" name="port2-q3" value="c"> c) Longo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exercise-actions">
+                    <button class="btn-check" onclick="checkExercise('port2', ['b', 'a', 'b'])">Verificar Respostas</button>
+                    <button class="btn-reset" onclick="resetExercise('port2')">Limpar</button>
+                </div>
+                <div id="port2-result" class="result-feedback"></div>
             </div>
         </div>
     </section>
@@ -448,5 +754,85 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Função para mostrar a seção selecionada
+        function showSection(section) {
+            // Oculta todas as seções
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('subjects-section').style.display = 'none';
+            document.getElementById('years-section').style.display = 'none';
+            document.getElementById('exercises-section').style.display = 'none';
+            
+            // Mostra a seção selecionada
+            if (section === 'home') {
+                document.getElementById('home-section').style.display = 'block';
+            } else if (section === 'subjects') {
+                document.getElementById('subjects-section').style.display = 'block';
+            } else if (section === 'exercises') {
+                document.getElementById('exercises-section').style.display = 'block';
+            }
+            
+            // Scroll para o topo
+            window.scrollTo(0, 0);
+        }
+        
+        // Inicialmente mostra a seção home
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+        });
+        
+        // Função para verificar as respostas dos exercícios
+        function checkExercise(exerciseId, correctAnswers) {
+            let score = 0;
+            let totalQuestions = correctAnswers.length;
+            let allAnswered = true;
+            
+            // Verifica cada questão
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionName = exerciseId + '-q' + i;
+                const selectedOption = document.querySelector('input[name="' + questionName + '"]:checked');
+                
+                if (selectedOption) {
+                    if (selectedOption.value === correctAnswers[i-1]) {
+                        score++;
+                    }
+                } else {
+                    allAnswered = false;
+                }
+            }
+            
+            // Exibe o resultado
+            const resultElement = document.getElementById(exerciseId + '-result');
+            
+            if (!allAnswered) {
+                resultElement.textContent = 'Por favor, responda todas as questões.';
+                resultElement.className = 'result-feedback incorrect';
+                resultElement.style.display = 'block';
+                return;
+            }
+            
+            if (score === totalQuestions) {
+                resultElement.textContent = 'Parabéns! Você acertou todas as questões!';
+                resultElement.className = 'result-feedback correct';
+            } else {
+                resultElement.textContent = 'Você acertou ' + score + ' de ' + totalQuestions + ' questões. Tente novamente!';
+                resultElement.className = 'result-feedback incorrect';
+            }
+            
+            resultElement.style.display = 'block';
+        }
+        
+        // Função para limpar as respostas
+        function resetExercise(exerciseId) {
+            const inputs = document.querySelectorAll('input[name^="' + exerciseId + '"]');
+            inputs.forEach(input => {
+                input.checked = false;
+            });
+            
+            const resultElement = document.getElementById(exerciseId + '-result');
+            resultElement.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
